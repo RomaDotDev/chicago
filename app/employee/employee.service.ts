@@ -1,3 +1,5 @@
+// a singleton service shared between for employee components
+
 import { Component, Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -7,11 +9,15 @@ import { Employee } from './employee';
 
 @Injectable()
 export class EmployeeService {
-    constructor(private http: Http){
-        console.log('init');
-    }
+    constructor(private http: Http){}
 
     private API_URL = 'http://localhost:8080';  // URL to web API
+
+    getEmployee (id:number): Observable<Employee> {
+        return this.http.get(`${this.API_URL}/${id}`)
+                      .map(this.extractData)
+                      .catch(this.handleError);
+    }
 
     getEmployees (): Observable<Employee[]> {
         return this.http.get(this.API_URL)
