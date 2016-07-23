@@ -8,7 +8,7 @@ import { Employee } from './employee';
 @Injectable()
 export class EmployeeService {
     constructor(private http: Http){
-        this.getEmployees().subscribe(data => console.log('data', data));
+        console.log('init');
     }
 
     private API_URL = 'http://localhost:8080';  // URL to web API

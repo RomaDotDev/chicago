@@ -13,6 +13,6 @@ import { EmployeeService } from './employee.service';
 })
 export class EmployeeComponent {
     constructor(
-        employeeService: EmployeeService
+        private employeeService: EmployeeService
     ){}
 }

@@ -1,0 +1,30 @@
+<div class="form-group">
+    <label for="dt-department" class="control-label">Department</label>
+    <select *ngIf="departments?.length > 0"
+            [(ngModel)]="selectedDepartment"
+            (ngModelChange)="onDeptChange($event)"
+            id="dt-department"
+            class="form-control"
+            name="dt-department">
+        <option>All</option>
+        <option *ngFor="let department of departments" [value]="department">{{department}}</option>
+    </select>
+</div>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>First Name<th>
+            <th>Last Name<th>
+            <th>Title<th>
+        <tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let employee of employees"
+            (click)="router.navigate(['/employee', employee.id]);">
+            <th>{{employee.name}}<th>
+            <th>{{employee.name}}<th>
+            <th>{{employee.job_titles}}<th>
+        </tr>
+    </tbody>
+</table>
