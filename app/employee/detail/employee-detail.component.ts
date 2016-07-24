@@ -1,12 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
+import { SplitPipe } from '../split.pipe';
 
 import { EmployeeService } from '../employee.service';
 import { Employee } from '../employee';
 
 @Component({
-    templateUrl: 'app/employee/detail/employee-detail.html'
+    templateUrl: 'app/employee/detail/employee-detail.html',
+    pipes: [ SplitPipe ]
 })
 
 export class EmployeeDetailComponent implements OnInit, OnDestroy {

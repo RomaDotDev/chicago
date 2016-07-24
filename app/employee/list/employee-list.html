@@ -9,7 +9,7 @@
                         id="dt-department"
                         class="form-control"
                         name="dt-department">
-                    <option [value]="''" selected>All</option>
+                    <option [value]="''" selected>ALL</option>
                     <option *ngFor="let department of departments"
                         [value]="department">{{department}}</option>
                 </select>
@@ -29,13 +29,15 @@
     <tbody>
         <tr *ngFor="let employee of employees | filterByDepartment:selectedDepartment"
             (click)="router.navigate(['/employee', employee.id]);">
+            <!-- Usually last name goes first, but I'll keep it as is -->
             <td>
+                <!-- cell-label is used for mobile version of table -->
                 <strong class="cell-label">First Name</strong>
-                {{ employee.name | split:', ':0 }}
+                {{ employee.name | split:', ':1 }}
             </td>
             <td>
                 <strong class="cell-label">Last Name</strong>
-                {{ employee.name | split:', ':1 }}
+                {{ employee.name | split:', ':0 }}
             </td>
             <td>
                 <strong class="cell-label">Title</strong>

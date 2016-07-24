@@ -12,16 +12,17 @@ for a picture (but to be left empty for this exercise) -->
             {{ employee?.id }}
         </div>
     </div>
+    <!-- Usually last name goes first, but I'll keep it as is -->
     <div class="form-group">
         <label class="col-sm-2 control-label">First Name</label>
         <div class="col-sm-10">
-            {{ employee?.name }}
+            {{ employee?.name | split:', ':1  }}
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label">Last Name</label>
         <div class="col-sm-10">
-            {{ employee?.name }}
+            {{ employee?.name | split:', ':0 }}
         </div>
     </div>
     <div class="form-group">
