@@ -7,39 +7,39 @@ for a picture (but to be left empty for this exercise) -->
 <hr>
 <form class="form-horizontal">
     <div class="form-group">
-        <label class="col-sm-2 control-label">Id</label>
+        <strong class="col-sm-2">Id</strong>
         <div class="col-sm-10">
             {{ employee?.id }}
         </div>
     </div>
     <!-- Usually last name goes first, but I'll keep it as is -->
     <div class="form-group">
-        <label class="col-sm-2 control-label">First Name</label>
+        <strong class="col-sm-2">First Name</strong>
         <div class="col-sm-10">
             {{ employee?.name | split:', ':1  }}
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">Last Name</label>
+        <strong class="col-sm-2">Last Name</strong>
         <div class="col-sm-10">
             {{ employee?.name | split:', ':0 }}
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">Title</label>
+        <strong class="col-sm-2">Title</strong>
         <div class="col-sm-10">
             {{ employee?.job_titles }}
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">Salary</label>
+        <strong class="col-sm-2">Salary</strong>
         <div class="col-sm-10">
             <!-- | currency:'USD' -->
             {{ employee?.employee_annual_salary }}
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">Department</label>
+        <strong class="col-sm-2">Department</strong>
         <div class="col-sm-10">
             {{ employee?.department }}
         </div>

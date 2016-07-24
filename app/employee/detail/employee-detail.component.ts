@@ -11,6 +11,10 @@ import { Employee } from '../employee';
     pipes: [ SplitPipe ]
 })
 
+// TODO: remove form-horizontal
+// TODO: fix styles
+// TODO: currency:'USD'
+
 export class EmployeeDetailComponent implements OnInit, OnDestroy {
     constructor(
         private route: ActivatedRoute,
