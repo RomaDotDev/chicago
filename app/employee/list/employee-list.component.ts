@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ROUTER_DIRECTIVES } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
 import { EmployeeService } from '../employee.service';
@@ -10,7 +10,8 @@ import { SplitPipe } from '../split.pipe';
 @Component({
   templateUrl: 'app/employee/list/employee-list.html',
   pipes: [ FilterByDepartmentPipe, SplitPipe ],
-  styleUrls: ['app/employee/list/employee-list.css']
+  styleUrls: ['app/employee/list/employee-list.css'],
+  directives: [ ROUTER_DIRECTIVES ]
 })
 
 // TODO: empty data case

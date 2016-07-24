@@ -3,16 +3,19 @@
 <nav class="navbar navbar-default" *ngIf="departments?.length > 0">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-xs-6">
                 <label for="dt-department" class="control-label">Department</label>
                 <select [(ngModel)]="selectedDepartment"
                         id="dt-department"
                         class="form-control"
-                        name="dt-department">
+                        name="department">
                     <option [value]="''" selected>ALL</option>
                     <option *ngFor="let department of departments"
                         [value]="department">{{department}}</option>
                 </select>
+            </div>
+            <div class="col-xs-6">
+                <a class="btn btn-primary" [routerLink]="['./add']" role="button">New Employee</a>
             </div>
         </div>
     </div>
