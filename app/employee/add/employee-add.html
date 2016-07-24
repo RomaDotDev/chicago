@@ -3,63 +3,123 @@ to the database; all the information should be provided: id, sid, first name,
 last name, title, salary, department -->
 
 <h2><small>Add new employee</small></h2>
-<form class="form-horizontal">
-    <div class="form-group">
+
+<!-- disable html5 validation in favor of Angular2 -->
+<form (ngSubmit)="onSubmit()"
+    #addEmployeeForm="ngForm"
+    class="form-horizontal"
+    novalidate>
+
+<!-- NOTE: For best UX we won't show errors right away and dispaly them only after user
+interacts with input or submits the form -->
+
+<!-- NOTE: Angular1 has handy ng-message directive which hides message implementation under
+the hood. Angular 2 team decided to hande this logic explicitly right inside template -->
+
+    <div [ngClass]="{'has-error': !id.valid && (isSubmitted || id.touched) }"
+        class="form-group">
+
         <label for="dt-id" class="col-sm-2 control-label">id</label>
         <div class="col-sm-10">
-            <input type="number"
+            <!-- NOTE: most moders browsers handle type="number" according to specs,
+            however Safari Mobile allows users to enter any letter char.
+            One of ways to control user's input is to use type="text" and custom regex-based validation-->
+            <input [(ngModel)]="formModel.id"
+                    type="number"
                     class="form-control"
                     id="dt-id"
-                    placeholder="Ex. 123">
+                    #id="ngModel"
+                    name="id"
+                    placeholder="Ex. 123"
+                    required>
+            <p [hidden]="id.valid || !isSubmitted && !id.touched" class="text-danger">Id is required</p>
         </div>
     </div>
-    <div class="form-group">
+    <div [ngClass]="{'has-error': !firstName.valid && (isSubmitted || firstName.touched) }"
+    class="form-group">
         <label for="dt-first-name" class="col-sm-2 control-label">First Name</label>
         <div class="col-sm-10">
-            <input type="text"
+            <!-- NOTE: this isput allows special chars. -->
+            <input [(ngModel)]="formModel.firstName"
+                type="text"
                 class="form-control"
                 id="dt-first-name"
-                placeholder="Ex. John">
+                #firstName="ngModel"
+                name="firstName"
+                placeholder="Ex. John"
+                required>
+            <p [hidden]="firstName.valid || !isSubmitted && !firstName.touched" class="text-danger">First Name is required</p>
         </div>
     </div>
-    <div class="form-group">
+    <div [ngClass]="{'has-error': !lastName.valid && (isSubmitted || lastName.touched) }"
+    class="form-group">
         <label for="dt-last-name" class="col-sm-2 control-label">Last Name</label>
         <div class="col-sm-10">
-            <input type="text"
+            <!-- NOTE: this isput allows special chars. -->
+            <input [(ngModel)]="formModel.lastName"
+                type="text"
                 class="form-control"
                 id="dt-last-name"
-                placeholder="Ex. Doe">
+                #lastName="ngModel"
+                name="lastName"
+                placeholder="Ex. Doe"
+                required>
+            <p [hidden]="lastName.valid || !isSubmitted && !lastName.touched" class="text-danger">Last Name is required</p>
         </div>
     </div>
-    <div class="form-group">
+    <div [ngClass]="{'has-error': !title.valid && (isSubmitted || title.touched) }"
+        class="form-group">
         <label for="dt-title" class="col-sm-2 control-label">Title</label>
         <div class="col-sm-10">
-            <input type="text"
+
+            <input [(ngModel)]="formModel.title"
+                type="text"
                 class="form-control"
                 id="dt-title"
-                placeholder="Ex. ">
+                #title="ngModel"
+                name="title"
+                placeholder="Ex. Paramedic"
+                required>
+            <p [hidden]="title.valid || !isSubmitted && !title.touched" class="text-danger">Title is required</p>
         </div>
     </div>
-    <div class="form-group">
+
+    <div [ngClass]="{'has-error': !salary.valid && (isSubmitted || salary.touched) }"
+        class="form-group">
         <label for="dt-salary" class="col-sm-2 control-label">Salary</label>
         <div class="col-sm-10">
             <!-- currency:'USD':true:'1.2-2' -->
                 <div class="input-group col-sm-10">
                   <span class="input-group-addon">$</span>
-                  <input type="number"
+                  <input [(ngModel)]="formModel.salary"
+                      type="number"
                       class="form-control"
                       id="dt-salary"
-                      placeholder="Ex. 84450.00">
+                      #salary="ngModel"
+                      name="salary"
+                      placeholder="Ex. 84450.00"
+                      required>
                 </div>
+            <p [hidden]="salary.valid || !isSubmitted && !salary.touched" class="text-danger">Salary is required</p>
         </div>
     </div>
-    <div class="form-group">
+    <div [ngClass]="{'has-error': !department.valid && (isSubmitted || department.touched) }"
+        class="form-group">
         <label for="dt-department" class="col-sm-2 control-label">Department</label>
         <div class="col-sm-10">
-            <input type="text"
+            <input [(ngModel)]="formModel.department"
+                type="text"
                 class="form-control"
                 id="dt-department"
-                placeholder="Department">
+                #department="ngModel"
+                name="department"
+                placeholder="Ex. Police"
+                required>
+            <p [hidden]="department.valid || !isSubmitted && !department.touched" class="text-danger">Salary is required</p>
         </div>
     </div>
+    <div class="form-group text-center">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+
 </form>
