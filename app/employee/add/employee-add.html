@@ -1,0 +1,65 @@
+<!-- Lastly, the third screen should provide a form to add a new employee
+to the database; all the information should be provided: id, sid, first name,
+last name, title, salary, department -->
+
+<h2><small>Add new employee</small></h2>
+<form class="form-horizontal">
+    <div class="form-group">
+        <label for="dt-id" class="col-sm-2 control-label">id</label>
+        <div class="col-sm-10">
+            <input type="number"
+                    class="form-control"
+                    id="dt-id"
+                    placeholder="Ex. 123">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="dt-first-name" class="col-sm-2 control-label">First Name</label>
+        <div class="col-sm-10">
+            <input type="text"
+                class="form-control"
+                id="dt-first-name"
+                placeholder="Ex. John">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="dt-last-name" class="col-sm-2 control-label">Last Name</label>
+        <div class="col-sm-10">
+            <input type="text"
+                class="form-control"
+                id="dt-last-name"
+                placeholder="Ex. Doe">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="dt-title" class="col-sm-2 control-label">Title</label>
+        <div class="col-sm-10">
+            <input type="text"
+                class="form-control"
+                id="dt-title"
+                placeholder="Ex. ">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="dt-salary" class="col-sm-2 control-label">Salary</label>
+        <div class="col-sm-10">
+            <!-- currency:'USD':true:'1.2-2' -->
+                <div class="input-group col-sm-10">
+                  <span class="input-group-addon">$</span>
+                  <input type="number"
+                      class="form-control"
+                      id="dt-salary"
+                      placeholder="Ex. 84450.00">
+                </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="dt-department" class="col-sm-2 control-label">Department</label>
+        <div class="col-sm-10">
+            <input type="text"
+                class="form-control"
+                id="dt-department"
+                placeholder="Department">
+        </div>
+    </div>
+</form>

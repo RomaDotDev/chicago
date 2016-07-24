@@ -2,7 +2,9 @@
 which should display all the information about this employee:
 id, sid, first name, last name, title, salary, department and add a placeholder
 for a picture (but to be left empty for this exercise) -->
-<h2><small>Employee details</small></h2>
+
+<h4>Employee details</h4>
+<hr>
 <form class="form-horizontal">
     <div class="form-group">
         <label class="col-sm-2 control-label">Id</label>
@@ -32,7 +34,7 @@ for a picture (but to be left empty for this exercise) -->
         <label class="col-sm-2 control-label">Salary</label>
         <div class="col-sm-10">
             <!-- | currency:'USD' -->
-            {{ employee?.employee_annual_salary  }}
+            {{ employee?.employee_annual_salary }}
         </div>
     </div>
     <div class="form-group">

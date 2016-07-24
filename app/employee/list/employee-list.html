@@ -1,30 +1,46 @@
-<div class="form-group">
-    <label for="dt-department" class="control-label">Department</label>
-    <select *ngIf="departments?.length > 0"
-            [(ngModel)]="selectedDepartment"
-            (ngModelChange)="onDeptChange($event)"
-            id="dt-department"
-            class="form-control"
-            name="dt-department">
-        <option>All</option>
-        <option *ngFor="let department of departments" [value]="department">{{department}}</option>
-    </select>
-</div>
+<h4>Employees</h4>
+<hr>
+<nav class="navbar navbar-default" *ngIf="departments?.length > 0">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <label for="dt-department" class="control-label">Department</label>
+                <select [(ngModel)]="selectedDepartment"
+                        id="dt-department"
+                        class="form-control"
+                        name="dt-department">
+                    <option [value]="''" selected>All</option>
+                    <option *ngFor="let department of departments"
+                        [value]="department">{{department}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</nav>
 
-<table class="table table-striped table-hover">
+<table id="td-table" class="table table-striped table-hover table-adaptive">
     <thead>
         <tr>
-            <th>First Name<th>
-            <th>Last Name<th>
-            <th>Title<th>
-        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Title</th>
+        </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let employee of employees"
+        <tr *ngFor="let employee of employees | filterByDepartment:selectedDepartment"
             (click)="router.navigate(['/employee', employee.id]);">
-            <th>{{employee.name}}<th>
-            <th>{{employee.name}}<th>
-            <th>{{employee.job_titles}}<th>
+            <td>
+                <strong class="cell-label">First Name</strong>
+                {{ employee.name | split:', ':0 }}
+            </td>
+            <td>
+                <strong class="cell-label">Last Name</strong>
+                {{ employee.name | split:', ':1 }}
+            </td>
+            <td>
+                <strong class="cell-label">Title</strong>
+                {{ employee.job_titles }}
+            </td>
         </tr>
     </tbody>
 </table>

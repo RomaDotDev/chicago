@@ -1,40 +1,46 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
+
 import { EmployeeService } from '../employee.service';
 import { Employee } from '../employee';
+import { FilterByDepartmentPipe } from '../filterByDepartment.pipe';
+import { SplitPipe } from '../split.pipe';
 
 @Component({
-  templateUrl: '/app/employee/list/employee-list.html'
+  templateUrl: 'app/employee/list/employee-list.html',
+  pipes: [ FilterByDepartmentPipe, SplitPipe ],
+  styleUrls: ['app/employee/list/employee-list.css']
 })
 
 // TODO: empty data case
 // TODO: error case
-// TODO: name pipe
-// TODO: department pipe
-// TODO: sort by department
 // TODO: adaptive table markup
 
-export class EmployeeListComponent implements OnInit{
+export class EmployeeListComponent implements OnInit, OnDestroy{
 
     constructor(
         private router: Router,
         private employeeService: EmployeeService
     ){}
 
-    private employees:Array<Employee>;
+    private employeesSubscription:Subscription;
+    private employees:Array<Employee> = [];
     private departments:Array<string>;
-    private selectedDepartment:string = 'All';
+    private selectedDepartment:string = '';
 
     ngOnInit(){
-        this.employeeService.getEmployees()
+        this.employeesSubscription = this.employeeService.getEmployees()
                         .subscribe(employees => {
                             this.employees = employees;
                             this.departments = this.getDepartments(this.employees);
                         });
     }
 
-    onDeptChange(value:string){
-        console.log(value);
+    ngOnDestroy(){
+        if (this.employeesSubscription){
+            this.employeesSubscription.unsubscribe();
+        }
     }
 
     // return unique departments

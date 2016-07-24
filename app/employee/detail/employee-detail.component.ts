@@ -6,10 +6,8 @@ import { EmployeeService } from '../employee.service';
 import { Employee } from '../employee';
 
 @Component({
-    templateUrl: '/app/employee/detail/employee-detail.html'
+    templateUrl: 'app/employee/detail/employee-detail.html'
 })
-
-// TODO: onDestroy
 
 export class EmployeeDetailComponent implements OnInit, OnDestroy {
     constructor(
