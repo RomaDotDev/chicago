@@ -15,7 +15,6 @@ import { Employee } from '../employee';
 // TODO: check if ID is available
 // TODO: do not allow negative numbers
 // TODO: department dropdown
-// TODO: success message
 
 export class EmployeeAddComponent implements OnInit, OnDestroy {
     @ViewChild('addEmployeeForm') addEmployeeForm:any;

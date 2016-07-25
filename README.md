@@ -1,8 +1,10 @@
-### To run both server
-# sun server in advance on port 8080
+## To run both server
 
+```
+# run server in advance on port 8080
 npm install # installs node dependencies, runs TypesScript compiler and Gulp SASS routine
 npm start # creates node server on localhost:3000 and opens default browser via browserSync, Gulp watches SASS changes as daemon
+```
 
 ### Pros
 * Scalable architecture with component-as-feature code decomposition
