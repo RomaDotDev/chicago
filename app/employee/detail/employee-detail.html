@@ -2,46 +2,61 @@
 which should display all the information about this employee:
 id, sid, first name, last name, title, salary, department and add a placeholder
 for a picture (but to be left empty for this exercise) -->
-
+<a class="btn btn-default pull-right" [routerLink]="['../']" role="button">Back</a>
 <h4>Employee details</h4>
 <hr>
-<form class="form-horizontal">
-    <div class="form-group">
-        <strong class="col-sm-2">Id</strong>
-        <div class="col-sm-10">
-            {{ employee?.id }}
+<spinner [hidden]="(employee|json) !== ({} | json)"></spinner>
+<div [hidden]="(employee|json) === ({} | json)">
+
+<div class="row">
+    <div class="col-sm-4 col-sm-offset-2">
+        <div class="form-horizontal">
+            <div class="form-group">
+                <strong class="col-sm-4">Id</strong>
+                <div class="col-sm-8">
+                    {{ employee?.id }}
+                </div>
+            </div>
+            <!-- Usually last name goes first, but I'll keep it as is -->
+            <div class="form-group">
+                <strong class="col-sm-4">First Name</strong>
+                <div class="col-sm-8">
+                    {{ employee?.name | split:', ':1  }}
+                </div>
+            </div>
+            <div class="form-group">
+                <strong class="col-sm-4">Last Name</strong>
+                <div class="col-sm-8">
+                    {{ employee?.name | split:', ':0 }}
+                </div>
+            </div>
+            <div class="form-group">
+                <strong class="col-sm-4">Title</strong>
+                <div class="col-sm-8">
+                    {{ employee?.job_titles }}
+                </div>
+            </div>
+            <div class="form-group">
+                <strong class="col-sm-4">Salary</strong>
+                <div class="col-sm-8">
+                    <!-- | currency:'USD' -->
+                    {{ employee?.employee_annual_salary }}
+                </div>
+            </div>
+            <div class="form-group">
+                <strong class="col-sm-4">Department</strong>
+                <div class="col-sm-8">
+                    {{ employee?.department }}
+                </div>
+            </div>
         </div>
     </div>
-    <!-- Usually last name goes first, but I'll keep it as is -->
-    <div class="form-group">
-        <strong class="col-sm-2">First Name</strong>
-        <div class="col-sm-10">
-            {{ employee?.name | split:', ':1  }}
-        </div>
+    <div class="col-sm-4 text-left">
+        <img src="app/employee/detail/avatar-placeholder.jpg" class="img-responsive img-circle" alt="{{ employee?.name }}">
     </div>
-    <div class="form-group">
-        <strong class="col-sm-2">Last Name</strong>
-        <div class="col-sm-10">
-            {{ employee?.name | split:', ':0 }}
-        </div>
-    </div>
-    <div class="form-group">
-        <strong class="col-sm-2">Title</strong>
-        <div class="col-sm-10">
-            {{ employee?.job_titles }}
-        </div>
-    </div>
-    <div class="form-group">
-        <strong class="col-sm-2">Salary</strong>
-        <div class="col-sm-10">
-            <!-- | currency:'USD' -->
-            {{ employee?.employee_annual_salary }}
-        </div>
-    </div>
-    <div class="form-group">
-        <strong class="col-sm-2">Department</strong>
-        <div class="col-sm-10">
-            {{ employee?.department }}
-        </div>
-    </div>
-</form>
+</div>
+
+
+
+
+</div>

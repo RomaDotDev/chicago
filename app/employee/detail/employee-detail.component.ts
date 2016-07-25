@@ -1,14 +1,16 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ROUTER_DIRECTIVES } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { SplitPipe } from '../split.pipe';
 
+import { SpinnerComponent } from '../../shared/spinner/spinner.component';
 import { EmployeeService } from '../employee.service';
 import { Employee } from '../employee';
 
 @Component({
     templateUrl: 'app/employee/detail/employee-detail.html',
-    pipes: [ SplitPipe ]
+    pipes: [ SplitPipe ],
+    directives: [ SpinnerComponent, ROUTER_DIRECTIVES ]
 })
 
 // TODO: remove form-horizontal
