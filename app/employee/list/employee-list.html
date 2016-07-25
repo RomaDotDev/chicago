@@ -42,8 +42,11 @@
     </div>
 </div>
 
+<spinner [hidden]="employees.length > 0"></spinner>
 
-<table id="td-table" class="table table-striped table-hover table-adaptive">
+<table [hidden]="employees.length === 0"
+    id="td-table"
+    class="table table-striped table-hover table-adaptive">
     <thead>
         <tr>
             <th>First Name</th>

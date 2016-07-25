@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, ROUTER_DIRECTIVES } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
+import { SpinnerComponent } from '../../shared/spinner/spinner.component';
 import { EmployeeService } from '../employee.service';
 import { Employee } from '../employee';
 import { FilterByDepartmentPipe } from '../filterByDepartment.pipe';
@@ -10,8 +11,10 @@ import { SplitPipe } from '../split.pipe';
 @Component({
   templateUrl: 'app/employee/list/employee-list.html',
   pipes: [ FilterByDepartmentPipe, SplitPipe ],
-  styleUrls: ['app/employee/list/employee-list.css'],
-  directives: [ ROUTER_DIRECTIVES ]
+  styleUrls: [
+      'app/employee/list/employee-list.css'
+  ],
+  directives: [ ROUTER_DIRECTIVES, SpinnerComponent ]
 })
 
 // TODO: empty data case
