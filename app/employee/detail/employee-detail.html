@@ -9,6 +9,9 @@ for a picture (but to be left empty for this exercise) -->
 <div [hidden]="(employee|json) === ({} | json)">
 
 <div class="row">
+    <div class="col-sm-4 text-left">
+        <img src="app/employee/detail/avatar-placeholder.jpg" class="img-responsive img-circle" alt="{{ employee?.name }}">
+    </div>
     <div class="col-sm-4 col-sm-offset-2">
         <div class="form-horizontal">
             <div class="form-group">
@@ -50,9 +53,6 @@ for a picture (but to be left empty for this exercise) -->
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-sm-4 text-left">
-        <img src="app/employee/detail/avatar-placeholder.jpg" class="img-responsive img-circle" alt="{{ employee?.name }}">
     </div>
 </div>
 
