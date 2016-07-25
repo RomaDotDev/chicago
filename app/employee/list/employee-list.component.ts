@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, ROUTER_DIRECTIVES } from '@angular/router';
+import { Router, ActivatedRoute, ROUTER_DIRECTIVES } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
 import { EmployeeService } from '../employee.service';
@@ -16,26 +16,25 @@ import { SplitPipe } from '../split.pipe';
 
 // TODO: empty data case
 // TODO: error case
-// TODO: adaptive table markup
 
 export class EmployeeListComponent implements OnInit, OnDestroy{
 
     constructor(
         private router: Router,
+        private route: ActivatedRoute,
         private employeeService: EmployeeService
     ){}
 
+    private perPage:number = 100;
+    private pageNum:number = 1;
     private employeesSubscription:Subscription;
     private employees:Array<Employee> = [];
     private departments:Array<string>;
     private selectedDepartment:string = '';
+    private perRageArr:Array<number> = [ 25, 50, 75, 100, 125, 150, 175, 200]
 
     ngOnInit(){
-        this.employeesSubscription = this.employeeService.getEmployees()
-                        .subscribe(employees => {
-                            this.employees = employees;
-                            this.departments = this.getDepartments(this.employees);
-                        });
+        this.getEmployees();
     }
 
     ngOnDestroy(){
@@ -44,7 +43,35 @@ export class EmployeeListComponent implements OnInit, OnDestroy{
         }
     }
 
-    // return unique departments
+    private onClickPrevious(){
+        this.pageNum--;
+        this.getEmployees();
+    }
+
+    private onClickNext(){
+        this.pageNum++;
+        this.getEmployees();
+    }
+
+    private getEmployees(){
+        if (this.employeesSubscription){
+            this.employeesSubscription.unsubscribe();
+        }
+
+        this.employeesSubscription = this.employeeService.getEmployees(this.pageNum, this.perPage)
+                    .subscribe(employees => {
+// Data filtering is handled by client. All data manipulations are going within current data page.
+
+// For usability reasons filter is dropped every time when page number or per page
+// counter are changed
+                        this.selectedDepartment = '';
+                        this.employees = employees;
+                        this.departments = this.getDepartments(this.employees);
+                    });
+    }
+
+
+    // return unique departments based on records of current data page
     getDepartments(arr:Array<Employee>){
         let result:Array<string> = [];
         let record:any;

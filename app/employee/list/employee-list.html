@@ -1,25 +1,47 @@
+<a class="btn btn-primary pull-right" [routerLink]="['./add']" role="button">New Employee</a>
 <h4>Employees</h4>
 <hr>
-<nav class="navbar navbar-default" *ngIf="departments?.length > 0">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-6">
-                <label for="dt-department" class="control-label">Department</label>
-                <select [(ngModel)]="selectedDepartment"
-                        id="dt-department"
-                        class="form-control"
-                        name="department">
-                    <option [value]="''" selected>ALL</option>
-                    <option *ngFor="let department of departments"
-                        [value]="department">{{department}}</option>
-                </select>
-            </div>
-            <div class="col-xs-6">
-                <a class="btn btn-primary" [routerLink]="['./add']" role="button">New Employee</a>
-            </div>
-        </div>
+
+<div class="form-inline form-group" *ngIf="departments?.length > 0">
+    <div class="form-group">
+        <label for="dt-department" class="control-label">Dept:</label>
+        <select [(ngModel)]="selectedDepartment"
+                id="dt-department"
+                class="form-control"
+                name="department">
+            <option [value]="''" selected>ALL</option>
+            <option *ngFor="let department of departments"
+                [value]="department">{{department}}</option>
+        </select>
     </div>
-</nav>
+    <div class="form-group">
+        <label for="dt-per-page" class="control-label">Per page:</label>
+        <select [(ngModel)]="perPage"
+            (ngModelChange)="getEmployees()"
+            class="form-control input-small"
+            name="perPage"
+            id="dt-per-page">
+            <option *ngFor="let pp of perRageArr" [value]="pp">{{pp}}</option>
+        </select>
+    </div>
+    <div class="form-group pull-right">
+        <!-- As backend doens't provide total pages number, there is no way to know if page is last in advance.
+        I could fetch next page every time when I load current, but it's waste of resources -->
+        <button (click)="onClickPrevious()"
+            [disabled]="pageNum === 1"
+            class="btn btn-default"
+            type="button">
+            Prev
+        </button>
+        <!-- disable prev button to prevent navigation on page < 1 -->
+        <button (click)="onClickNext()"
+            class="btn btn-default"
+            type="button">
+            Next
+        </button>
+    </div>
+</div>
+
 
 <table id="td-table" class="table table-striped table-hover table-adaptive">
     <thead>
@@ -49,3 +71,40 @@
         </tr>
     </tbody>
 </table>
+
+<div class="form-inline form-group" *ngIf="departments?.length > 0">
+    <div class="form-group">
+        <label for="dt-department" class="control-label">Dept:</label>
+        <select [(ngModel)]="selectedDepartment"
+                id="dt-department"
+                class="form-control"
+                name="department">
+            <option [value]="''" selected>ALL</option>
+            <option *ngFor="let department of departments"
+                [value]="department">{{department}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="dt-per-page" class="control-label">Per page:</label>
+        <select [(ngModel)]="perPage"
+            (ngModelChange)="getEmployees()"
+            class="form-control input-small"
+            name="perPage"
+            id="dt-per-page">
+            <option *ngFor="let pp of perRageArr" [value]="pp">{{pp}}</option>
+        </select>
+    </div>
+    <div class="form-group pull-right">
+        <button (click)="onClickPrevious()"
+            [disabled]="pageNum === 1"
+            class="btn btn-default"
+            type="button">
+            Prev
+        </button>
+        <button (click)="onClickNext()"
+            class="btn btn-default"
+            type="button">
+            Next
+        </button>
+    </div>
+</div>
